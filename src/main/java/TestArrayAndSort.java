@@ -72,7 +72,7 @@ public class TestArrayAndSort {
      */
     @Test
     public void testRemoveByIndex() {
-        counting.remove(5);
+        counting.remove(3);
         Integer toRemove = 82;
         counting.remove(toRemove);
         assertFalse(counting.contains(130));
