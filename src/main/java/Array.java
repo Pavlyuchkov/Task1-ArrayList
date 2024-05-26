@@ -56,7 +56,6 @@ public class Array {
         public void addElementByIndex(int index, int element) {
             counting.add(index, element);
         }
-//        System.out.println("Массив после вставки двух элементов в начало по индексам " + counting);
 
 
         /**
@@ -69,7 +68,6 @@ public class Array {
         public int getByIndex(int index) {
             return counting.get(index);
         }
-//        System.out.println("Получаем число 808 по индексу 10: " + getByIndex);
 
 
         /**
@@ -82,7 +80,6 @@ public class Array {
         public void removeByIndex(int index) {
             counting.remove(index);
         }
-//        System.out.println("Массив без удаленных чисел 130 и 82: " + counting);
 
         public void removeByValue(Integer value) {
             counting.remove(value);
@@ -97,7 +94,6 @@ public class Array {
         public void setElement(int index, int element) {
             counting.set(index, element);
         }
-//        System.out.println("Замена первого элемента 100 на 20: " + counting);
 
         /**
          * Позволяет отсортировать массив по возрастанию. Реализация класса {@link QuickSort}.
@@ -106,7 +102,6 @@ public class Array {
             QuickSort<Integer> sorter = new QuickSort<>();
             sorter.quickSort(counting, 0, counting.size() - 1, Comparator.naturalOrder());
         }
-//        System.out.println("Сортируем массив с помощью Quick Sort: " + counting);
 
         /**
          * Позволяет полностью очистить массив, удалив все элементы.
@@ -118,7 +113,6 @@ public class Array {
         public List<Integer> getCounting() {
             return counting;
         }
-//        System.out.println("Массив очищен? : " + counting.isEmpty());
 
 
 
@@ -127,10 +121,5 @@ public class Array {
     public static void main(String[] args) {
             Array array = new Array();
             array.createNewArray();
-//        System.out.println("Изначальный массив после add: " + array.getC);
-//
-//        array.addElements(55);
-//        array.addElements(66);
-//        System.out.println("Массив после вставки двух элементов по значению: " + фк);
     }
 }
