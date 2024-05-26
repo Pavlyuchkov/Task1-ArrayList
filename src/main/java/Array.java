@@ -10,9 +10,27 @@ import java.util.List;
  * @author Василий Павлючков
  */
 public class Array {
-    public static void main(String[] args) {
 
-        List<Integer> counting = new ArrayList<>();
+    private List<Integer> counting;
+
+    public Array() {
+        counting = new ArrayList<>();
+    }
+
+
+        public void createNewArray() {
+            counting.add(43);
+            counting.add(99);
+            counting.add(233);
+            counting.add(130);
+            counting.add(15);
+            counting.add(943);
+            counting.add(634);
+            counting.add(333);
+            counting.add(808);
+            counting.add(275);
+            counting.add(82);
+        }
 
         /**
          * Добавляет указанный элемент в конец списка.
@@ -21,18 +39,9 @@ public class Array {
          * @return true {@link java.util.Collection}
          * @throws IndexOutOfBoundsException в случае, если указанный индекс меньше нуля, либо больше размера массива.
          */
-        counting.add(43);
-        counting.add(99);
-        counting.add(233);
-        counting.add(130);
-        counting.add(15);
-        counting.add(943);
-        counting.add(634);
-        counting.add(333);
-        counting.add(808);
-        counting.add(275);
-        counting.add(82);
-        System.out.println("Изначальный массив после add: " + counting);
+        public void addElements(int element) {
+            counting.add(element);
+        }
 
 
         /**
@@ -44,20 +53,23 @@ public class Array {
          * @return true {@link java.util.Collection}
          * @throws IndexOutOfBoundsException в случае, если указанный индекс меньше нуля, либо больше размера массива.
          */
-        counting.add(0, 100);
-        counting.add(1, 10);
-        System.out.println("Массив после вставки двух элементов в начало по индексам " + counting);
+        public void addElementByIndex(int index, int element) {
+            counting.add(index, element);
+        }
+//        System.out.println("Массив после вставки двух элементов в начало по индексам " + counting);
 
 
         /**
          * Позволяет получить элемент по индексу.
          *
          * @param index Индекс в массиве.
-         * @returns Элемент по указанному индексу
+         * @return
          * @throws IndexOutOfBoundsException в случае, если указанный индекс меньше нуля, либо больше размера массива.
          */
-        Integer getByIndex = counting.get(10);
-        System.out.println("Получаем число 808 по индексу 10: " + getByIndex);
+        public int getByIndex(int index) {
+            return counting.get(index);
+        }
+//        System.out.println("Получаем число 808 по индексу 10: " + getByIndex);
 
 
         /**
@@ -67,12 +79,14 @@ public class Array {
          * @param index Индекс в массиве.
          * @throws IndexOutOfBoundsException в случае, если указанный индекс меньше нуля, либо больше размера массива.
          */
-        counting.remove(5);
-        Integer toRemove = 82;
-        counting.remove(toRemove);
-        System.out.println("Массив без удаленных чисел 130 и 82: " + counting);
+        public void removeByIndex(int index) {
+            counting.remove(index);
+        }
+//        System.out.println("Массив без удаленных чисел 130 и 82: " + counting);
 
-
+        public void removeByValue(Integer value) {
+            counting.remove(value);
+        }
         /**
          * Позволяет заменить элемент по индексу.
          *
@@ -80,22 +94,43 @@ public class Array {
          * @param element Значение, на которое производится замена.
          * @throws IndexOutOfBoundsException в случае, если указанный индекс меньше нуля, либо больше размера массива.
          */
-        counting.set(0, 20);
-        System.out.println("Замена первого элемента 100 на 20: " + counting);
+        public void setElement(int index, int element) {
+            counting.set(index, element);
+        }
+//        System.out.println("Замена первого элемента 100 на 20: " + counting);
 
         /**
          * Позволяет отсортировать массив по возрастанию. Реализация класса {@link QuickSort}.
          */
-        QuickSort<Integer> sorter = new QuickSort<>();
-        sorter.quickSort(counting, 0, counting.size() - 1, Comparator.naturalOrder());
-        System.out.println("Сортируем массив с помощью Quick Sort: " + counting);
+        public void quickSort() {
+            QuickSort<Integer> sorter = new QuickSort<>();
+            sorter.quickSort(counting, 0, counting.size() - 1, Comparator.naturalOrder());
+        }
+//        System.out.println("Сортируем массив с помощью Quick Sort: " + counting);
 
         /**
          * Позволяет полностью очистить массив, удалив все элементы.
-         *
-         * @returns Empty массив.
          */
-        counting.clear();
-        System.out.println("Массив очищен? : " + counting.isEmpty());
+        public void clear() {
+            counting.clear();
+        }
+
+        public List<Integer> getCounting() {
+            return counting;
+        }
+//        System.out.println("Массив очищен? : " + counting.isEmpty());
+
+
+
+
+
+    public static void main(String[] args) {
+            Array array = new Array();
+            array.createNewArray();
+//        System.out.println("Изначальный массив после add: " + array.getC);
+//
+//        array.addElements(55);
+//        array.addElements(66);
+//        System.out.println("Массив после вставки двух элементов по значению: " + фк);
     }
 }

@@ -74,8 +74,6 @@ public class TestWithCycles {
         for (int i = 0; i < newArray.size(); i++) {
             assertEquals(newArray.get(i), expected.get(i));
         }
-        System.out.println(newArray);
-        System.out.println(expected);
     }
 
     /**

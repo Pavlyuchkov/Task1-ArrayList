@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class TestArrayAndSort {
 
-    private List<Integer> counting;
+    private Array array;
     private QuickSort<Integer> quickSort;
 
     /**
@@ -21,35 +21,34 @@ public class TestArrayAndSort {
      */
     @BeforeEach
     public void createAndFillArray() {
-        counting = new ArrayList<>();
-        counting.add(43);
-        counting.add(99);
-        counting.add(233);
-        counting.add(130);
-        counting.add(15);
-        counting.add(943);
-        counting.add(634);
-        counting.add(333);
-        counting.add(808);
-        counting.add(275);
-        counting.add(82);
+        array = new Array();
+        array.createNewArray();
 
         quickSort = new QuickSort<>();
     }
 
     /**
      * Тестирует успешность создания исходной среды тестирования. <p>
-     * 1. Тест на успешность создания массива.</p> <p>
-     * 2. Тест на количество элементов в массиве - 11.</p> <p>
-     * 3. Тест на соответствие первого элемента.</p> <p>
-     * 4. Тест на соответствие последнего элемента.</p>
+     * 1. Тест на количество элементов в массиве - 11.</p> <p>
+     * 2. Тест на соответствие элемента.</p>
      */
     @Test
-    public void testInitialArray() {
-        assertNotNull(counting);
+    public void testNewArray() {
+        List<Integer> counting = array.getCounting();
         assertEquals(11, counting.size());
-        assertEquals(Integer.valueOf(43), counting.get(0));
-        assertEquals(Integer.valueOf(82), counting.get(10));
+        assertEquals(43, counting.get(0));
+    }
+
+    /**
+     * Тестирует успешность добавления элемента по значению. <p>
+     * 1. Тест на количество элементов в массиве после добавления - 12.</p> <p>
+     * 2. Тест на наличие нового элемента 50.</p>
+     */
+    @Test
+    public void testAddElement() {
+        array.addElements(50);
+        assertEquals(12, array.getCounting().size());
+        assertTrue(array.getCounting().contains(50));
     }
 
     /**
@@ -58,58 +57,68 @@ public class TestArrayAndSort {
      * 2. Тест на соответствие элемента 10 индексу 1.</p>
      */
     @Test
-    public void testAddAndGetByIndex() {
-        counting.add(0, 100);
-        counting.add(1, 10);
-        assertEquals(Integer.valueOf(100), counting.get(0));
-        assertEquals(Integer.valueOf(10), counting.get(1));
+    public void testAddByIndex() {
+        array.addElementByIndex(0, 100);
+        array.addElementByIndex(1, 10);
+        assertEquals(100, array.getCounting().get(0));
+        assertEquals(10, array.getCounting().get(1));
     }
 
     /**
-     * Тестирует удаление элемента по индексу и по значению. <p>
-     * 1. Тест на удаление элемента 130 по индексу 3. </p> <p>
-     * 2. Тест на удаление элемента 82 по значению. </p>
+     * Тестирует получение элемента 808 по индексу 8.
+     */
+    @Test
+    public void getByIndex() {
+        assertEquals(808, array.getByIndex(8));
+    }
+
+    /**
+     * Тестирует удаление элемента 943 по индексу 5.
      */
     @Test
     public void testRemoveByIndex() {
-        counting.remove(3);
-        Integer toRemove = 82;
-        counting.remove(toRemove);
-        assertFalse(counting.contains(130));
-        assertFalse(counting.contains(82));
+       array.removeByIndex(5);
+       assertFalse(array.getCounting().contains(943));
     }
 
     /**
-     * Тестирует изменение значения элемента по индесу. <p>
-     * 1. Тест на изменение значения элемента на 20 по индексу 0. </p>
+     * Тестирует удаление элемента по значению 82.
      */
     @Test
-    public void testUpdateByIndex() {
-        counting.set(0, 20);
-        assertEquals(Integer.valueOf(20), counting.get(0));
+    public void testRemoveByValue() {
+        array.removeByValue(82);
+        assertFalse(array.getCounting().contains(82));
+    }
+
+    /**
+     * Тестирует изменение значения элемента на 20 по индексу 0. </p>
+     */
+    @Test
+    public void testSetElement() {
+        array.setElement(0, 20);
+        assertEquals(20, array.getCounting().get(0));
     }
 
     /**
      * Тестирует сортировку массива по возрастанию. <p>
-     * 1. Тест, при котором после вызова метода сортировки,
+     * Тест, при котором после вызова метода сортировки,
      * каждый элемент в списке должен быть меньше или равен следующему элементу. </p>
      */
     @Test
     public void testQuickSort() {
-        quickSort.quickSort(counting, 0, counting.size() - 1, Integer::compareTo);
-        for (int i = 0; i < counting.size() - 1; i++) {
-            assertTrue(counting.get(i) <= counting.get(i + 1));
+        array.quickSort();
+        List<Integer> counting = array.getCounting();
+        for (int i = 1; i < counting.size(); i++) {
+            assertTrue(counting.get(i - 1) <= counting.get(i));
         }
     }
 
     /**
-     * Тестирует очистку массива от элементов. <p>
-     * 1. Тест на проверку массива на наличие элементов. Если элементов нет, то
-     * @return true </p>
+     * Тестирует очистку массива от элементов и проверяет массив на "пустоту".
      */
     @Test
     public void testClear() {
-        counting.clear();
-        assertTrue(counting.isEmpty());
+        array.clear();
+        assertTrue(array.getCounting().isEmpty());
     }
 }
